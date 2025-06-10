@@ -1,0 +1,1281 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> project
+Rule 1     project -> lista_servicos
+Rule 2     lista_servicos -> servico lista_servicos
+Rule 3     lista_servicos -> empty
+Rule 4     servico -> SERVICO STRING LBRACE lista_params RBRACE
+Rule 5     lista_params -> param lista_params
+Rule 6     lista_params -> empty
+Rule 7     param -> IMAGEM STRING
+Rule 8     param -> CONSTRUIR STRING
+Rule 9     param -> ARGUMENTOS LPAREN arg_list RPAREN
+Rule 10    param -> NOME_CONTAINER STRING
+Rule 11    param -> REINICIAR STRING
+Rule 12    param -> COMANDO [ string_list ]
+Rule 13    param -> PONTO_ENTRADA [ string_list ]
+Rule 14    param -> ENV LPAREN string_list RPAREN
+Rule 15    param -> ARQUIVO_ENV STRING
+Rule 16    param -> PORTAS LPAREN port_list RPAREN
+Rule 17    param -> EXPOR LPAREN num_list RPAREN
+Rule 18    param -> VOLUME STRING
+Rule 19    param -> DEPENDENTES LPAREN string_list RPAREN
+Rule 20    param -> REDES LPAREN string_list RPAREN
+Rule 21    param -> ROTULOS LPAREN string_list RPAREN
+Rule 22    param -> DIR_TRABALHO STRING
+Rule 23    param -> USUARIO STRING
+Rule 24    param -> HOSTS_EXTRAS LPAREN string_list RPAREN
+Rule 25    param -> LIMITES LPAREN ulimit_list RPAREN
+Rule 26    arg_list -> STRING COMMA STRING
+Rule 27    arg_list -> STRING COMMA STRING COMMA arg_list
+Rule 28    string_list -> STRING
+Rule 29    string_list -> STRING COMMA string_list
+Rule 30    port_list -> NUMBER : NUMBER
+Rule 31    port_list -> NUMBER : NUMBER COMMA port_list
+Rule 32    num_list -> NUMBER
+Rule 33    num_list -> NUMBER COMMA num_list
+Rule 34    ulimit_list -> STRING NUMBER
+Rule 35    ulimit_list -> STRING NUMBER COMMA ulimit_list
+Rule 36    empty -> <empty>
+
+Terminals, with rules where they appear
+
+:                    : 30 31
+ARGUMENTOS           : 9
+ARQUIVO_ENV          : 15
+COMANDO              : 12
+COMMA                : 26 27 27 29 31 33 35
+CONSTRUIR            : 8
+DEPENDENTES          : 19
+DIR_TRABALHO         : 22
+ENV                  : 14
+EXPOR                : 17
+HOSTS_EXTRAS         : 24
+IMAGEM               : 7
+LBRACE               : 4
+LIMITES              : 25
+LPAREN               : 9 14 16 17 19 20 21 24 25
+NOME_CONTAINER       : 10
+NUMBER               : 30 30 31 31 32 33 34 35
+PONTO_ENTRADA        : 13
+PORTAS               : 16
+RBRACE               : 4
+REDES                : 20
+REINICIAR            : 11
+ROTULOS              : 21
+RPAREN               : 9 14 16 17 19 20 21 24 25
+SERVICO              : 4
+STRING               : 4 7 8 10 11 15 18 22 23 26 26 27 27 28 29 34 35
+USUARIO              : 23
+VOLUME               : 18
+[                    : 12 13
+]                    : 12 13
+error                : 
+
+Nonterminals, with rules where they appear
+
+arg_list             : 9 27
+empty                : 3 6
+lista_params         : 4 5
+lista_servicos       : 1 2
+num_list             : 17 33
+param                : 5
+port_list            : 16 31
+project              : 0
+servico              : 2
+string_list          : 12 13 14 19 20 21 24 29
+ulimit_list          : 25 35
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . project
+    (1) project -> . lista_servicos
+    (2) lista_servicos -> . servico lista_servicos
+    (3) lista_servicos -> . empty
+    (4) servico -> . SERVICO STRING LBRACE lista_params RBRACE
+    (36) empty -> .
+
+    SERVICO         shift and go to state 5
+    $end            reduce using rule 36 (empty -> .)
+
+    project                        shift and go to state 1
+    lista_servicos                 shift and go to state 2
+    servico                        shift and go to state 3
+    empty                          shift and go to state 4
+
+state 1
+
+    (0) S' -> project .
+
+
+
+state 2
+
+    (1) project -> lista_servicos .
+
+    $end            reduce using rule 1 (project -> lista_servicos .)
+
+
+state 3
+
+    (2) lista_servicos -> servico . lista_servicos
+    (2) lista_servicos -> . servico lista_servicos
+    (3) lista_servicos -> . empty
+    (4) servico -> . SERVICO STRING LBRACE lista_params RBRACE
+    (36) empty -> .
+
+    SERVICO         shift and go to state 5
+    $end            reduce using rule 36 (empty -> .)
+
+    servico                        shift and go to state 3
+    lista_servicos                 shift and go to state 6
+    empty                          shift and go to state 4
+
+state 4
+
+    (3) lista_servicos -> empty .
+
+    $end            reduce using rule 3 (lista_servicos -> empty .)
+
+
+state 5
+
+    (4) servico -> SERVICO . STRING LBRACE lista_params RBRACE
+
+    STRING          shift and go to state 7
+
+
+state 6
+
+    (2) lista_servicos -> servico lista_servicos .
+
+    $end            reduce using rule 2 (lista_servicos -> servico lista_servicos .)
+
+
+state 7
+
+    (4) servico -> SERVICO STRING . LBRACE lista_params RBRACE
+
+    LBRACE          shift and go to state 8
+
+
+state 8
+
+    (4) servico -> SERVICO STRING LBRACE . lista_params RBRACE
+    (5) lista_params -> . param lista_params
+    (6) lista_params -> . empty
+    (7) param -> . IMAGEM STRING
+    (8) param -> . CONSTRUIR STRING
+    (9) param -> . ARGUMENTOS LPAREN arg_list RPAREN
+    (10) param -> . NOME_CONTAINER STRING
+    (11) param -> . REINICIAR STRING
+    (12) param -> . COMANDO [ string_list ]
+    (13) param -> . PONTO_ENTRADA [ string_list ]
+    (14) param -> . ENV LPAREN string_list RPAREN
+    (15) param -> . ARQUIVO_ENV STRING
+    (16) param -> . PORTAS LPAREN port_list RPAREN
+    (17) param -> . EXPOR LPAREN num_list RPAREN
+    (18) param -> . VOLUME STRING
+    (19) param -> . DEPENDENTES LPAREN string_list RPAREN
+    (20) param -> . REDES LPAREN string_list RPAREN
+    (21) param -> . ROTULOS LPAREN string_list RPAREN
+    (22) param -> . DIR_TRABALHO STRING
+    (23) param -> . USUARIO STRING
+    (24) param -> . HOSTS_EXTRAS LPAREN string_list RPAREN
+    (25) param -> . LIMITES LPAREN ulimit_list RPAREN
+    (36) empty -> .
+
+    IMAGEM          shift and go to state 12
+    CONSTRUIR       shift and go to state 13
+    ARGUMENTOS      shift and go to state 14
+    NOME_CONTAINER  shift and go to state 15
+    REINICIAR       shift and go to state 16
+    COMANDO         shift and go to state 17
+    PONTO_ENTRADA   shift and go to state 18
+    ENV             shift and go to state 19
+    ARQUIVO_ENV     shift and go to state 20
+    PORTAS          shift and go to state 21
+    EXPOR           shift and go to state 22
+    VOLUME          shift and go to state 23
+    DEPENDENTES     shift and go to state 24
+    REDES           shift and go to state 25
+    ROTULOS         shift and go to state 26
+    DIR_TRABALHO    shift and go to state 27
+    USUARIO         shift and go to state 28
+    HOSTS_EXTRAS    shift and go to state 29
+    LIMITES         shift and go to state 30
+    RBRACE          reduce using rule 36 (empty -> .)
+
+    lista_params                   shift and go to state 9
+    param                          shift and go to state 10
+    empty                          shift and go to state 11
+
+state 9
+
+    (4) servico -> SERVICO STRING LBRACE lista_params . RBRACE
+
+    RBRACE          shift and go to state 31
+
+
+state 10
+
+    (5) lista_params -> param . lista_params
+    (5) lista_params -> . param lista_params
+    (6) lista_params -> . empty
+    (7) param -> . IMAGEM STRING
+    (8) param -> . CONSTRUIR STRING
+    (9) param -> . ARGUMENTOS LPAREN arg_list RPAREN
+    (10) param -> . NOME_CONTAINER STRING
+    (11) param -> . REINICIAR STRING
+    (12) param -> . COMANDO [ string_list ]
+    (13) param -> . PONTO_ENTRADA [ string_list ]
+    (14) param -> . ENV LPAREN string_list RPAREN
+    (15) param -> . ARQUIVO_ENV STRING
+    (16) param -> . PORTAS LPAREN port_list RPAREN
+    (17) param -> . EXPOR LPAREN num_list RPAREN
+    (18) param -> . VOLUME STRING
+    (19) param -> . DEPENDENTES LPAREN string_list RPAREN
+    (20) param -> . REDES LPAREN string_list RPAREN
+    (21) param -> . ROTULOS LPAREN string_list RPAREN
+    (22) param -> . DIR_TRABALHO STRING
+    (23) param -> . USUARIO STRING
+    (24) param -> . HOSTS_EXTRAS LPAREN string_list RPAREN
+    (25) param -> . LIMITES LPAREN ulimit_list RPAREN
+    (36) empty -> .
+
+    IMAGEM          shift and go to state 12
+    CONSTRUIR       shift and go to state 13
+    ARGUMENTOS      shift and go to state 14
+    NOME_CONTAINER  shift and go to state 15
+    REINICIAR       shift and go to state 16
+    COMANDO         shift and go to state 17
+    PONTO_ENTRADA   shift and go to state 18
+    ENV             shift and go to state 19
+    ARQUIVO_ENV     shift and go to state 20
+    PORTAS          shift and go to state 21
+    EXPOR           shift and go to state 22
+    VOLUME          shift and go to state 23
+    DEPENDENTES     shift and go to state 24
+    REDES           shift and go to state 25
+    ROTULOS         shift and go to state 26
+    DIR_TRABALHO    shift and go to state 27
+    USUARIO         shift and go to state 28
+    HOSTS_EXTRAS    shift and go to state 29
+    LIMITES         shift and go to state 30
+    RBRACE          reduce using rule 36 (empty -> .)
+
+    param                          shift and go to state 10
+    lista_params                   shift and go to state 32
+    empty                          shift and go to state 11
+
+state 11
+
+    (6) lista_params -> empty .
+
+    RBRACE          reduce using rule 6 (lista_params -> empty .)
+
+
+state 12
+
+    (7) param -> IMAGEM . STRING
+
+    STRING          shift and go to state 33
+
+
+state 13
+
+    (8) param -> CONSTRUIR . STRING
+
+    STRING          shift and go to state 34
+
+
+state 14
+
+    (9) param -> ARGUMENTOS . LPAREN arg_list RPAREN
+
+    LPAREN          shift and go to state 35
+
+
+state 15
+
+    (10) param -> NOME_CONTAINER . STRING
+
+    STRING          shift and go to state 36
+
+
+state 16
+
+    (11) param -> REINICIAR . STRING
+
+    STRING          shift and go to state 37
+
+
+state 17
+
+    (12) param -> COMANDO . [ string_list ]
+
+    [               shift and go to state 38
+
+
+state 18
+
+    (13) param -> PONTO_ENTRADA . [ string_list ]
+
+    [               shift and go to state 39
+
+
+state 19
+
+    (14) param -> ENV . LPAREN string_list RPAREN
+
+    LPAREN          shift and go to state 40
+
+
+state 20
+
+    (15) param -> ARQUIVO_ENV . STRING
+
+    STRING          shift and go to state 41
+
+
+state 21
+
+    (16) param -> PORTAS . LPAREN port_list RPAREN
+
+    LPAREN          shift and go to state 42
+
+
+state 22
+
+    (17) param -> EXPOR . LPAREN num_list RPAREN
+
+    LPAREN          shift and go to state 43
+
+
+state 23
+
+    (18) param -> VOLUME . STRING
+
+    STRING          shift and go to state 44
+
+
+state 24
+
+    (19) param -> DEPENDENTES . LPAREN string_list RPAREN
+
+    LPAREN          shift and go to state 45
+
+
+state 25
+
+    (20) param -> REDES . LPAREN string_list RPAREN
+
+    LPAREN          shift and go to state 46
+
+
+state 26
+
+    (21) param -> ROTULOS . LPAREN string_list RPAREN
+
+    LPAREN          shift and go to state 47
+
+
+state 27
+
+    (22) param -> DIR_TRABALHO . STRING
+
+    STRING          shift and go to state 48
+
+
+state 28
+
+    (23) param -> USUARIO . STRING
+
+    STRING          shift and go to state 49
+
+
+state 29
+
+    (24) param -> HOSTS_EXTRAS . LPAREN string_list RPAREN
+
+    LPAREN          shift and go to state 50
+
+
+state 30
+
+    (25) param -> LIMITES . LPAREN ulimit_list RPAREN
+
+    LPAREN          shift and go to state 51
+
+
+state 31
+
+    (4) servico -> SERVICO STRING LBRACE lista_params RBRACE .
+
+    SERVICO         reduce using rule 4 (servico -> SERVICO STRING LBRACE lista_params RBRACE .)
+    $end            reduce using rule 4 (servico -> SERVICO STRING LBRACE lista_params RBRACE .)
+
+
+state 32
+
+    (5) lista_params -> param lista_params .
+
+    RBRACE          reduce using rule 5 (lista_params -> param lista_params .)
+
+
+state 33
+
+    (7) param -> IMAGEM STRING .
+
+    IMAGEM          reduce using rule 7 (param -> IMAGEM STRING .)
+    CONSTRUIR       reduce using rule 7 (param -> IMAGEM STRING .)
+    ARGUMENTOS      reduce using rule 7 (param -> IMAGEM STRING .)
+    NOME_CONTAINER  reduce using rule 7 (param -> IMAGEM STRING .)
+    REINICIAR       reduce using rule 7 (param -> IMAGEM STRING .)
+    COMANDO         reduce using rule 7 (param -> IMAGEM STRING .)
+    PONTO_ENTRADA   reduce using rule 7 (param -> IMAGEM STRING .)
+    ENV             reduce using rule 7 (param -> IMAGEM STRING .)
+    ARQUIVO_ENV     reduce using rule 7 (param -> IMAGEM STRING .)
+    PORTAS          reduce using rule 7 (param -> IMAGEM STRING .)
+    EXPOR           reduce using rule 7 (param -> IMAGEM STRING .)
+    VOLUME          reduce using rule 7 (param -> IMAGEM STRING .)
+    DEPENDENTES     reduce using rule 7 (param -> IMAGEM STRING .)
+    REDES           reduce using rule 7 (param -> IMAGEM STRING .)
+    ROTULOS         reduce using rule 7 (param -> IMAGEM STRING .)
+    DIR_TRABALHO    reduce using rule 7 (param -> IMAGEM STRING .)
+    USUARIO         reduce using rule 7 (param -> IMAGEM STRING .)
+    HOSTS_EXTRAS    reduce using rule 7 (param -> IMAGEM STRING .)
+    LIMITES         reduce using rule 7 (param -> IMAGEM STRING .)
+    RBRACE          reduce using rule 7 (param -> IMAGEM STRING .)
+
+
+state 34
+
+    (8) param -> CONSTRUIR STRING .
+
+    IMAGEM          reduce using rule 8 (param -> CONSTRUIR STRING .)
+    CONSTRUIR       reduce using rule 8 (param -> CONSTRUIR STRING .)
+    ARGUMENTOS      reduce using rule 8 (param -> CONSTRUIR STRING .)
+    NOME_CONTAINER  reduce using rule 8 (param -> CONSTRUIR STRING .)
+    REINICIAR       reduce using rule 8 (param -> CONSTRUIR STRING .)
+    COMANDO         reduce using rule 8 (param -> CONSTRUIR STRING .)
+    PONTO_ENTRADA   reduce using rule 8 (param -> CONSTRUIR STRING .)
+    ENV             reduce using rule 8 (param -> CONSTRUIR STRING .)
+    ARQUIVO_ENV     reduce using rule 8 (param -> CONSTRUIR STRING .)
+    PORTAS          reduce using rule 8 (param -> CONSTRUIR STRING .)
+    EXPOR           reduce using rule 8 (param -> CONSTRUIR STRING .)
+    VOLUME          reduce using rule 8 (param -> CONSTRUIR STRING .)
+    DEPENDENTES     reduce using rule 8 (param -> CONSTRUIR STRING .)
+    REDES           reduce using rule 8 (param -> CONSTRUIR STRING .)
+    ROTULOS         reduce using rule 8 (param -> CONSTRUIR STRING .)
+    DIR_TRABALHO    reduce using rule 8 (param -> CONSTRUIR STRING .)
+    USUARIO         reduce using rule 8 (param -> CONSTRUIR STRING .)
+    HOSTS_EXTRAS    reduce using rule 8 (param -> CONSTRUIR STRING .)
+    LIMITES         reduce using rule 8 (param -> CONSTRUIR STRING .)
+    RBRACE          reduce using rule 8 (param -> CONSTRUIR STRING .)
+
+
+state 35
+
+    (9) param -> ARGUMENTOS LPAREN . arg_list RPAREN
+    (26) arg_list -> . STRING COMMA STRING
+    (27) arg_list -> . STRING COMMA STRING COMMA arg_list
+
+    STRING          shift and go to state 53
+
+    arg_list                       shift and go to state 52
+
+state 36
+
+    (10) param -> NOME_CONTAINER STRING .
+
+    IMAGEM          reduce using rule 10 (param -> NOME_CONTAINER STRING .)
+    CONSTRUIR       reduce using rule 10 (param -> NOME_CONTAINER STRING .)
+    ARGUMENTOS      reduce using rule 10 (param -> NOME_CONTAINER STRING .)
+    NOME_CONTAINER  reduce using rule 10 (param -> NOME_CONTAINER STRING .)
+    REINICIAR       reduce using rule 10 (param -> NOME_CONTAINER STRING .)
+    COMANDO         reduce using rule 10 (param -> NOME_CONTAINER STRING .)
+    PONTO_ENTRADA   reduce using rule 10 (param -> NOME_CONTAINER STRING .)
+    ENV             reduce using rule 10 (param -> NOME_CONTAINER STRING .)
+    ARQUIVO_ENV     reduce using rule 10 (param -> NOME_CONTAINER STRING .)
+    PORTAS          reduce using rule 10 (param -> NOME_CONTAINER STRING .)
+    EXPOR           reduce using rule 10 (param -> NOME_CONTAINER STRING .)
+    VOLUME          reduce using rule 10 (param -> NOME_CONTAINER STRING .)
+    DEPENDENTES     reduce using rule 10 (param -> NOME_CONTAINER STRING .)
+    REDES           reduce using rule 10 (param -> NOME_CONTAINER STRING .)
+    ROTULOS         reduce using rule 10 (param -> NOME_CONTAINER STRING .)
+    DIR_TRABALHO    reduce using rule 10 (param -> NOME_CONTAINER STRING .)
+    USUARIO         reduce using rule 10 (param -> NOME_CONTAINER STRING .)
+    HOSTS_EXTRAS    reduce using rule 10 (param -> NOME_CONTAINER STRING .)
+    LIMITES         reduce using rule 10 (param -> NOME_CONTAINER STRING .)
+    RBRACE          reduce using rule 10 (param -> NOME_CONTAINER STRING .)
+
+
+state 37
+
+    (11) param -> REINICIAR STRING .
+
+    IMAGEM          reduce using rule 11 (param -> REINICIAR STRING .)
+    CONSTRUIR       reduce using rule 11 (param -> REINICIAR STRING .)
+    ARGUMENTOS      reduce using rule 11 (param -> REINICIAR STRING .)
+    NOME_CONTAINER  reduce using rule 11 (param -> REINICIAR STRING .)
+    REINICIAR       reduce using rule 11 (param -> REINICIAR STRING .)
+    COMANDO         reduce using rule 11 (param -> REINICIAR STRING .)
+    PONTO_ENTRADA   reduce using rule 11 (param -> REINICIAR STRING .)
+    ENV             reduce using rule 11 (param -> REINICIAR STRING .)
+    ARQUIVO_ENV     reduce using rule 11 (param -> REINICIAR STRING .)
+    PORTAS          reduce using rule 11 (param -> REINICIAR STRING .)
+    EXPOR           reduce using rule 11 (param -> REINICIAR STRING .)
+    VOLUME          reduce using rule 11 (param -> REINICIAR STRING .)
+    DEPENDENTES     reduce using rule 11 (param -> REINICIAR STRING .)
+    REDES           reduce using rule 11 (param -> REINICIAR STRING .)
+    ROTULOS         reduce using rule 11 (param -> REINICIAR STRING .)
+    DIR_TRABALHO    reduce using rule 11 (param -> REINICIAR STRING .)
+    USUARIO         reduce using rule 11 (param -> REINICIAR STRING .)
+    HOSTS_EXTRAS    reduce using rule 11 (param -> REINICIAR STRING .)
+    LIMITES         reduce using rule 11 (param -> REINICIAR STRING .)
+    RBRACE          reduce using rule 11 (param -> REINICIAR STRING .)
+
+
+state 38
+
+    (12) param -> COMANDO [ . string_list ]
+    (28) string_list -> . STRING
+    (29) string_list -> . STRING COMMA string_list
+
+    STRING          shift and go to state 55
+
+    string_list                    shift and go to state 54
+
+state 39
+
+    (13) param -> PONTO_ENTRADA [ . string_list ]
+    (28) string_list -> . STRING
+    (29) string_list -> . STRING COMMA string_list
+
+    STRING          shift and go to state 55
+
+    string_list                    shift and go to state 56
+
+state 40
+
+    (14) param -> ENV LPAREN . string_list RPAREN
+    (28) string_list -> . STRING
+    (29) string_list -> . STRING COMMA string_list
+
+    STRING          shift and go to state 55
+
+    string_list                    shift and go to state 57
+
+state 41
+
+    (15) param -> ARQUIVO_ENV STRING .
+
+    IMAGEM          reduce using rule 15 (param -> ARQUIVO_ENV STRING .)
+    CONSTRUIR       reduce using rule 15 (param -> ARQUIVO_ENV STRING .)
+    ARGUMENTOS      reduce using rule 15 (param -> ARQUIVO_ENV STRING .)
+    NOME_CONTAINER  reduce using rule 15 (param -> ARQUIVO_ENV STRING .)
+    REINICIAR       reduce using rule 15 (param -> ARQUIVO_ENV STRING .)
+    COMANDO         reduce using rule 15 (param -> ARQUIVO_ENV STRING .)
+    PONTO_ENTRADA   reduce using rule 15 (param -> ARQUIVO_ENV STRING .)
+    ENV             reduce using rule 15 (param -> ARQUIVO_ENV STRING .)
+    ARQUIVO_ENV     reduce using rule 15 (param -> ARQUIVO_ENV STRING .)
+    PORTAS          reduce using rule 15 (param -> ARQUIVO_ENV STRING .)
+    EXPOR           reduce using rule 15 (param -> ARQUIVO_ENV STRING .)
+    VOLUME          reduce using rule 15 (param -> ARQUIVO_ENV STRING .)
+    DEPENDENTES     reduce using rule 15 (param -> ARQUIVO_ENV STRING .)
+    REDES           reduce using rule 15 (param -> ARQUIVO_ENV STRING .)
+    ROTULOS         reduce using rule 15 (param -> ARQUIVO_ENV STRING .)
+    DIR_TRABALHO    reduce using rule 15 (param -> ARQUIVO_ENV STRING .)
+    USUARIO         reduce using rule 15 (param -> ARQUIVO_ENV STRING .)
+    HOSTS_EXTRAS    reduce using rule 15 (param -> ARQUIVO_ENV STRING .)
+    LIMITES         reduce using rule 15 (param -> ARQUIVO_ENV STRING .)
+    RBRACE          reduce using rule 15 (param -> ARQUIVO_ENV STRING .)
+
+
+state 42
+
+    (16) param -> PORTAS LPAREN . port_list RPAREN
+    (30) port_list -> . NUMBER : NUMBER
+    (31) port_list -> . NUMBER : NUMBER COMMA port_list
+
+    NUMBER          shift and go to state 59
+
+    port_list                      shift and go to state 58
+
+state 43
+
+    (17) param -> EXPOR LPAREN . num_list RPAREN
+    (32) num_list -> . NUMBER
+    (33) num_list -> . NUMBER COMMA num_list
+
+    NUMBER          shift and go to state 61
+
+    num_list                       shift and go to state 60
+
+state 44
+
+    (18) param -> VOLUME STRING .
+
+    IMAGEM          reduce using rule 18 (param -> VOLUME STRING .)
+    CONSTRUIR       reduce using rule 18 (param -> VOLUME STRING .)
+    ARGUMENTOS      reduce using rule 18 (param -> VOLUME STRING .)
+    NOME_CONTAINER  reduce using rule 18 (param -> VOLUME STRING .)
+    REINICIAR       reduce using rule 18 (param -> VOLUME STRING .)
+    COMANDO         reduce using rule 18 (param -> VOLUME STRING .)
+    PONTO_ENTRADA   reduce using rule 18 (param -> VOLUME STRING .)
+    ENV             reduce using rule 18 (param -> VOLUME STRING .)
+    ARQUIVO_ENV     reduce using rule 18 (param -> VOLUME STRING .)
+    PORTAS          reduce using rule 18 (param -> VOLUME STRING .)
+    EXPOR           reduce using rule 18 (param -> VOLUME STRING .)
+    VOLUME          reduce using rule 18 (param -> VOLUME STRING .)
+    DEPENDENTES     reduce using rule 18 (param -> VOLUME STRING .)
+    REDES           reduce using rule 18 (param -> VOLUME STRING .)
+    ROTULOS         reduce using rule 18 (param -> VOLUME STRING .)
+    DIR_TRABALHO    reduce using rule 18 (param -> VOLUME STRING .)
+    USUARIO         reduce using rule 18 (param -> VOLUME STRING .)
+    HOSTS_EXTRAS    reduce using rule 18 (param -> VOLUME STRING .)
+    LIMITES         reduce using rule 18 (param -> VOLUME STRING .)
+    RBRACE          reduce using rule 18 (param -> VOLUME STRING .)
+
+
+state 45
+
+    (19) param -> DEPENDENTES LPAREN . string_list RPAREN
+    (28) string_list -> . STRING
+    (29) string_list -> . STRING COMMA string_list
+
+    STRING          shift and go to state 55
+
+    string_list                    shift and go to state 62
+
+state 46
+
+    (20) param -> REDES LPAREN . string_list RPAREN
+    (28) string_list -> . STRING
+    (29) string_list -> . STRING COMMA string_list
+
+    STRING          shift and go to state 55
+
+    string_list                    shift and go to state 63
+
+state 47
+
+    (21) param -> ROTULOS LPAREN . string_list RPAREN
+    (28) string_list -> . STRING
+    (29) string_list -> . STRING COMMA string_list
+
+    STRING          shift and go to state 55
+
+    string_list                    shift and go to state 64
+
+state 48
+
+    (22) param -> DIR_TRABALHO STRING .
+
+    IMAGEM          reduce using rule 22 (param -> DIR_TRABALHO STRING .)
+    CONSTRUIR       reduce using rule 22 (param -> DIR_TRABALHO STRING .)
+    ARGUMENTOS      reduce using rule 22 (param -> DIR_TRABALHO STRING .)
+    NOME_CONTAINER  reduce using rule 22 (param -> DIR_TRABALHO STRING .)
+    REINICIAR       reduce using rule 22 (param -> DIR_TRABALHO STRING .)
+    COMANDO         reduce using rule 22 (param -> DIR_TRABALHO STRING .)
+    PONTO_ENTRADA   reduce using rule 22 (param -> DIR_TRABALHO STRING .)
+    ENV             reduce using rule 22 (param -> DIR_TRABALHO STRING .)
+    ARQUIVO_ENV     reduce using rule 22 (param -> DIR_TRABALHO STRING .)
+    PORTAS          reduce using rule 22 (param -> DIR_TRABALHO STRING .)
+    EXPOR           reduce using rule 22 (param -> DIR_TRABALHO STRING .)
+    VOLUME          reduce using rule 22 (param -> DIR_TRABALHO STRING .)
+    DEPENDENTES     reduce using rule 22 (param -> DIR_TRABALHO STRING .)
+    REDES           reduce using rule 22 (param -> DIR_TRABALHO STRING .)
+    ROTULOS         reduce using rule 22 (param -> DIR_TRABALHO STRING .)
+    DIR_TRABALHO    reduce using rule 22 (param -> DIR_TRABALHO STRING .)
+    USUARIO         reduce using rule 22 (param -> DIR_TRABALHO STRING .)
+    HOSTS_EXTRAS    reduce using rule 22 (param -> DIR_TRABALHO STRING .)
+    LIMITES         reduce using rule 22 (param -> DIR_TRABALHO STRING .)
+    RBRACE          reduce using rule 22 (param -> DIR_TRABALHO STRING .)
+
+
+state 49
+
+    (23) param -> USUARIO STRING .
+
+    IMAGEM          reduce using rule 23 (param -> USUARIO STRING .)
+    CONSTRUIR       reduce using rule 23 (param -> USUARIO STRING .)
+    ARGUMENTOS      reduce using rule 23 (param -> USUARIO STRING .)
+    NOME_CONTAINER  reduce using rule 23 (param -> USUARIO STRING .)
+    REINICIAR       reduce using rule 23 (param -> USUARIO STRING .)
+    COMANDO         reduce using rule 23 (param -> USUARIO STRING .)
+    PONTO_ENTRADA   reduce using rule 23 (param -> USUARIO STRING .)
+    ENV             reduce using rule 23 (param -> USUARIO STRING .)
+    ARQUIVO_ENV     reduce using rule 23 (param -> USUARIO STRING .)
+    PORTAS          reduce using rule 23 (param -> USUARIO STRING .)
+    EXPOR           reduce using rule 23 (param -> USUARIO STRING .)
+    VOLUME          reduce using rule 23 (param -> USUARIO STRING .)
+    DEPENDENTES     reduce using rule 23 (param -> USUARIO STRING .)
+    REDES           reduce using rule 23 (param -> USUARIO STRING .)
+    ROTULOS         reduce using rule 23 (param -> USUARIO STRING .)
+    DIR_TRABALHO    reduce using rule 23 (param -> USUARIO STRING .)
+    USUARIO         reduce using rule 23 (param -> USUARIO STRING .)
+    HOSTS_EXTRAS    reduce using rule 23 (param -> USUARIO STRING .)
+    LIMITES         reduce using rule 23 (param -> USUARIO STRING .)
+    RBRACE          reduce using rule 23 (param -> USUARIO STRING .)
+
+
+state 50
+
+    (24) param -> HOSTS_EXTRAS LPAREN . string_list RPAREN
+    (28) string_list -> . STRING
+    (29) string_list -> . STRING COMMA string_list
+
+    STRING          shift and go to state 55
+
+    string_list                    shift and go to state 65
+
+state 51
+
+    (25) param -> LIMITES LPAREN . ulimit_list RPAREN
+    (34) ulimit_list -> . STRING NUMBER
+    (35) ulimit_list -> . STRING NUMBER COMMA ulimit_list
+
+    STRING          shift and go to state 67
+
+    ulimit_list                    shift and go to state 66
+
+state 52
+
+    (9) param -> ARGUMENTOS LPAREN arg_list . RPAREN
+
+    RPAREN          shift and go to state 68
+
+
+state 53
+
+    (26) arg_list -> STRING . COMMA STRING
+    (27) arg_list -> STRING . COMMA STRING COMMA arg_list
+
+    COMMA           shift and go to state 69
+
+
+state 54
+
+    (12) param -> COMANDO [ string_list . ]
+
+    ]               shift and go to state 70
+
+
+state 55
+
+    (28) string_list -> STRING .
+    (29) string_list -> STRING . COMMA string_list
+
+    ]               reduce using rule 28 (string_list -> STRING .)
+    RPAREN          reduce using rule 28 (string_list -> STRING .)
+    COMMA           shift and go to state 71
+
+
+state 56
+
+    (13) param -> PONTO_ENTRADA [ string_list . ]
+
+    ]               shift and go to state 72
+
+
+state 57
+
+    (14) param -> ENV LPAREN string_list . RPAREN
+
+    RPAREN          shift and go to state 73
+
+
+state 58
+
+    (16) param -> PORTAS LPAREN port_list . RPAREN
+
+    RPAREN          shift and go to state 74
+
+
+state 59
+
+    (30) port_list -> NUMBER . : NUMBER
+    (31) port_list -> NUMBER . : NUMBER COMMA port_list
+
+    :               shift and go to state 75
+
+
+state 60
+
+    (17) param -> EXPOR LPAREN num_list . RPAREN
+
+    RPAREN          shift and go to state 76
+
+
+state 61
+
+    (32) num_list -> NUMBER .
+    (33) num_list -> NUMBER . COMMA num_list
+
+    RPAREN          reduce using rule 32 (num_list -> NUMBER .)
+    COMMA           shift and go to state 77
+
+
+state 62
+
+    (19) param -> DEPENDENTES LPAREN string_list . RPAREN
+
+    RPAREN          shift and go to state 78
+
+
+state 63
+
+    (20) param -> REDES LPAREN string_list . RPAREN
+
+    RPAREN          shift and go to state 79
+
+
+state 64
+
+    (21) param -> ROTULOS LPAREN string_list . RPAREN
+
+    RPAREN          shift and go to state 80
+
+
+state 65
+
+    (24) param -> HOSTS_EXTRAS LPAREN string_list . RPAREN
+
+    RPAREN          shift and go to state 81
+
+
+state 66
+
+    (25) param -> LIMITES LPAREN ulimit_list . RPAREN
+
+    RPAREN          shift and go to state 82
+
+
+state 67
+
+    (34) ulimit_list -> STRING . NUMBER
+    (35) ulimit_list -> STRING . NUMBER COMMA ulimit_list
+
+    NUMBER          shift and go to state 83
+
+
+state 68
+
+    (9) param -> ARGUMENTOS LPAREN arg_list RPAREN .
+
+    IMAGEM          reduce using rule 9 (param -> ARGUMENTOS LPAREN arg_list RPAREN .)
+    CONSTRUIR       reduce using rule 9 (param -> ARGUMENTOS LPAREN arg_list RPAREN .)
+    ARGUMENTOS      reduce using rule 9 (param -> ARGUMENTOS LPAREN arg_list RPAREN .)
+    NOME_CONTAINER  reduce using rule 9 (param -> ARGUMENTOS LPAREN arg_list RPAREN .)
+    REINICIAR       reduce using rule 9 (param -> ARGUMENTOS LPAREN arg_list RPAREN .)
+    COMANDO         reduce using rule 9 (param -> ARGUMENTOS LPAREN arg_list RPAREN .)
+    PONTO_ENTRADA   reduce using rule 9 (param -> ARGUMENTOS LPAREN arg_list RPAREN .)
+    ENV             reduce using rule 9 (param -> ARGUMENTOS LPAREN arg_list RPAREN .)
+    ARQUIVO_ENV     reduce using rule 9 (param -> ARGUMENTOS LPAREN arg_list RPAREN .)
+    PORTAS          reduce using rule 9 (param -> ARGUMENTOS LPAREN arg_list RPAREN .)
+    EXPOR           reduce using rule 9 (param -> ARGUMENTOS LPAREN arg_list RPAREN .)
+    VOLUME          reduce using rule 9 (param -> ARGUMENTOS LPAREN arg_list RPAREN .)
+    DEPENDENTES     reduce using rule 9 (param -> ARGUMENTOS LPAREN arg_list RPAREN .)
+    REDES           reduce using rule 9 (param -> ARGUMENTOS LPAREN arg_list RPAREN .)
+    ROTULOS         reduce using rule 9 (param -> ARGUMENTOS LPAREN arg_list RPAREN .)
+    DIR_TRABALHO    reduce using rule 9 (param -> ARGUMENTOS LPAREN arg_list RPAREN .)
+    USUARIO         reduce using rule 9 (param -> ARGUMENTOS LPAREN arg_list RPAREN .)
+    HOSTS_EXTRAS    reduce using rule 9 (param -> ARGUMENTOS LPAREN arg_list RPAREN .)
+    LIMITES         reduce using rule 9 (param -> ARGUMENTOS LPAREN arg_list RPAREN .)
+    RBRACE          reduce using rule 9 (param -> ARGUMENTOS LPAREN arg_list RPAREN .)
+
+
+state 69
+
+    (26) arg_list -> STRING COMMA . STRING
+    (27) arg_list -> STRING COMMA . STRING COMMA arg_list
+
+    STRING          shift and go to state 84
+
+
+state 70
+
+    (12) param -> COMANDO [ string_list ] .
+
+    IMAGEM          reduce using rule 12 (param -> COMANDO [ string_list ] .)
+    CONSTRUIR       reduce using rule 12 (param -> COMANDO [ string_list ] .)
+    ARGUMENTOS      reduce using rule 12 (param -> COMANDO [ string_list ] .)
+    NOME_CONTAINER  reduce using rule 12 (param -> COMANDO [ string_list ] .)
+    REINICIAR       reduce using rule 12 (param -> COMANDO [ string_list ] .)
+    COMANDO         reduce using rule 12 (param -> COMANDO [ string_list ] .)
+    PONTO_ENTRADA   reduce using rule 12 (param -> COMANDO [ string_list ] .)
+    ENV             reduce using rule 12 (param -> COMANDO [ string_list ] .)
+    ARQUIVO_ENV     reduce using rule 12 (param -> COMANDO [ string_list ] .)
+    PORTAS          reduce using rule 12 (param -> COMANDO [ string_list ] .)
+    EXPOR           reduce using rule 12 (param -> COMANDO [ string_list ] .)
+    VOLUME          reduce using rule 12 (param -> COMANDO [ string_list ] .)
+    DEPENDENTES     reduce using rule 12 (param -> COMANDO [ string_list ] .)
+    REDES           reduce using rule 12 (param -> COMANDO [ string_list ] .)
+    ROTULOS         reduce using rule 12 (param -> COMANDO [ string_list ] .)
+    DIR_TRABALHO    reduce using rule 12 (param -> COMANDO [ string_list ] .)
+    USUARIO         reduce using rule 12 (param -> COMANDO [ string_list ] .)
+    HOSTS_EXTRAS    reduce using rule 12 (param -> COMANDO [ string_list ] .)
+    LIMITES         reduce using rule 12 (param -> COMANDO [ string_list ] .)
+    RBRACE          reduce using rule 12 (param -> COMANDO [ string_list ] .)
+
+
+state 71
+
+    (29) string_list -> STRING COMMA . string_list
+    (28) string_list -> . STRING
+    (29) string_list -> . STRING COMMA string_list
+
+    STRING          shift and go to state 55
+
+    string_list                    shift and go to state 85
+
+state 72
+
+    (13) param -> PONTO_ENTRADA [ string_list ] .
+
+    IMAGEM          reduce using rule 13 (param -> PONTO_ENTRADA [ string_list ] .)
+    CONSTRUIR       reduce using rule 13 (param -> PONTO_ENTRADA [ string_list ] .)
+    ARGUMENTOS      reduce using rule 13 (param -> PONTO_ENTRADA [ string_list ] .)
+    NOME_CONTAINER  reduce using rule 13 (param -> PONTO_ENTRADA [ string_list ] .)
+    REINICIAR       reduce using rule 13 (param -> PONTO_ENTRADA [ string_list ] .)
+    COMANDO         reduce using rule 13 (param -> PONTO_ENTRADA [ string_list ] .)
+    PONTO_ENTRADA   reduce using rule 13 (param -> PONTO_ENTRADA [ string_list ] .)
+    ENV             reduce using rule 13 (param -> PONTO_ENTRADA [ string_list ] .)
+    ARQUIVO_ENV     reduce using rule 13 (param -> PONTO_ENTRADA [ string_list ] .)
+    PORTAS          reduce using rule 13 (param -> PONTO_ENTRADA [ string_list ] .)
+    EXPOR           reduce using rule 13 (param -> PONTO_ENTRADA [ string_list ] .)
+    VOLUME          reduce using rule 13 (param -> PONTO_ENTRADA [ string_list ] .)
+    DEPENDENTES     reduce using rule 13 (param -> PONTO_ENTRADA [ string_list ] .)
+    REDES           reduce using rule 13 (param -> PONTO_ENTRADA [ string_list ] .)
+    ROTULOS         reduce using rule 13 (param -> PONTO_ENTRADA [ string_list ] .)
+    DIR_TRABALHO    reduce using rule 13 (param -> PONTO_ENTRADA [ string_list ] .)
+    USUARIO         reduce using rule 13 (param -> PONTO_ENTRADA [ string_list ] .)
+    HOSTS_EXTRAS    reduce using rule 13 (param -> PONTO_ENTRADA [ string_list ] .)
+    LIMITES         reduce using rule 13 (param -> PONTO_ENTRADA [ string_list ] .)
+    RBRACE          reduce using rule 13 (param -> PONTO_ENTRADA [ string_list ] .)
+
+
+state 73
+
+    (14) param -> ENV LPAREN string_list RPAREN .
+
+    IMAGEM          reduce using rule 14 (param -> ENV LPAREN string_list RPAREN .)
+    CONSTRUIR       reduce using rule 14 (param -> ENV LPAREN string_list RPAREN .)
+    ARGUMENTOS      reduce using rule 14 (param -> ENV LPAREN string_list RPAREN .)
+    NOME_CONTAINER  reduce using rule 14 (param -> ENV LPAREN string_list RPAREN .)
+    REINICIAR       reduce using rule 14 (param -> ENV LPAREN string_list RPAREN .)
+    COMANDO         reduce using rule 14 (param -> ENV LPAREN string_list RPAREN .)
+    PONTO_ENTRADA   reduce using rule 14 (param -> ENV LPAREN string_list RPAREN .)
+    ENV             reduce using rule 14 (param -> ENV LPAREN string_list RPAREN .)
+    ARQUIVO_ENV     reduce using rule 14 (param -> ENV LPAREN string_list RPAREN .)
+    PORTAS          reduce using rule 14 (param -> ENV LPAREN string_list RPAREN .)
+    EXPOR           reduce using rule 14 (param -> ENV LPAREN string_list RPAREN .)
+    VOLUME          reduce using rule 14 (param -> ENV LPAREN string_list RPAREN .)
+    DEPENDENTES     reduce using rule 14 (param -> ENV LPAREN string_list RPAREN .)
+    REDES           reduce using rule 14 (param -> ENV LPAREN string_list RPAREN .)
+    ROTULOS         reduce using rule 14 (param -> ENV LPAREN string_list RPAREN .)
+    DIR_TRABALHO    reduce using rule 14 (param -> ENV LPAREN string_list RPAREN .)
+    USUARIO         reduce using rule 14 (param -> ENV LPAREN string_list RPAREN .)
+    HOSTS_EXTRAS    reduce using rule 14 (param -> ENV LPAREN string_list RPAREN .)
+    LIMITES         reduce using rule 14 (param -> ENV LPAREN string_list RPAREN .)
+    RBRACE          reduce using rule 14 (param -> ENV LPAREN string_list RPAREN .)
+
+
+state 74
+
+    (16) param -> PORTAS LPAREN port_list RPAREN .
+
+    IMAGEM          reduce using rule 16 (param -> PORTAS LPAREN port_list RPAREN .)
+    CONSTRUIR       reduce using rule 16 (param -> PORTAS LPAREN port_list RPAREN .)
+    ARGUMENTOS      reduce using rule 16 (param -> PORTAS LPAREN port_list RPAREN .)
+    NOME_CONTAINER  reduce using rule 16 (param -> PORTAS LPAREN port_list RPAREN .)
+    REINICIAR       reduce using rule 16 (param -> PORTAS LPAREN port_list RPAREN .)
+    COMANDO         reduce using rule 16 (param -> PORTAS LPAREN port_list RPAREN .)
+    PONTO_ENTRADA   reduce using rule 16 (param -> PORTAS LPAREN port_list RPAREN .)
+    ENV             reduce using rule 16 (param -> PORTAS LPAREN port_list RPAREN .)
+    ARQUIVO_ENV     reduce using rule 16 (param -> PORTAS LPAREN port_list RPAREN .)
+    PORTAS          reduce using rule 16 (param -> PORTAS LPAREN port_list RPAREN .)
+    EXPOR           reduce using rule 16 (param -> PORTAS LPAREN port_list RPAREN .)
+    VOLUME          reduce using rule 16 (param -> PORTAS LPAREN port_list RPAREN .)
+    DEPENDENTES     reduce using rule 16 (param -> PORTAS LPAREN port_list RPAREN .)
+    REDES           reduce using rule 16 (param -> PORTAS LPAREN port_list RPAREN .)
+    ROTULOS         reduce using rule 16 (param -> PORTAS LPAREN port_list RPAREN .)
+    DIR_TRABALHO    reduce using rule 16 (param -> PORTAS LPAREN port_list RPAREN .)
+    USUARIO         reduce using rule 16 (param -> PORTAS LPAREN port_list RPAREN .)
+    HOSTS_EXTRAS    reduce using rule 16 (param -> PORTAS LPAREN port_list RPAREN .)
+    LIMITES         reduce using rule 16 (param -> PORTAS LPAREN port_list RPAREN .)
+    RBRACE          reduce using rule 16 (param -> PORTAS LPAREN port_list RPAREN .)
+
+
+state 75
+
+    (30) port_list -> NUMBER : . NUMBER
+    (31) port_list -> NUMBER : . NUMBER COMMA port_list
+
+    NUMBER          shift and go to state 86
+
+
+state 76
+
+    (17) param -> EXPOR LPAREN num_list RPAREN .
+
+    IMAGEM          reduce using rule 17 (param -> EXPOR LPAREN num_list RPAREN .)
+    CONSTRUIR       reduce using rule 17 (param -> EXPOR LPAREN num_list RPAREN .)
+    ARGUMENTOS      reduce using rule 17 (param -> EXPOR LPAREN num_list RPAREN .)
+    NOME_CONTAINER  reduce using rule 17 (param -> EXPOR LPAREN num_list RPAREN .)
+    REINICIAR       reduce using rule 17 (param -> EXPOR LPAREN num_list RPAREN .)
+    COMANDO         reduce using rule 17 (param -> EXPOR LPAREN num_list RPAREN .)
+    PONTO_ENTRADA   reduce using rule 17 (param -> EXPOR LPAREN num_list RPAREN .)
+    ENV             reduce using rule 17 (param -> EXPOR LPAREN num_list RPAREN .)
+    ARQUIVO_ENV     reduce using rule 17 (param -> EXPOR LPAREN num_list RPAREN .)
+    PORTAS          reduce using rule 17 (param -> EXPOR LPAREN num_list RPAREN .)
+    EXPOR           reduce using rule 17 (param -> EXPOR LPAREN num_list RPAREN .)
+    VOLUME          reduce using rule 17 (param -> EXPOR LPAREN num_list RPAREN .)
+    DEPENDENTES     reduce using rule 17 (param -> EXPOR LPAREN num_list RPAREN .)
+    REDES           reduce using rule 17 (param -> EXPOR LPAREN num_list RPAREN .)
+    ROTULOS         reduce using rule 17 (param -> EXPOR LPAREN num_list RPAREN .)
+    DIR_TRABALHO    reduce using rule 17 (param -> EXPOR LPAREN num_list RPAREN .)
+    USUARIO         reduce using rule 17 (param -> EXPOR LPAREN num_list RPAREN .)
+    HOSTS_EXTRAS    reduce using rule 17 (param -> EXPOR LPAREN num_list RPAREN .)
+    LIMITES         reduce using rule 17 (param -> EXPOR LPAREN num_list RPAREN .)
+    RBRACE          reduce using rule 17 (param -> EXPOR LPAREN num_list RPAREN .)
+
+
+state 77
+
+    (33) num_list -> NUMBER COMMA . num_list
+    (32) num_list -> . NUMBER
+    (33) num_list -> . NUMBER COMMA num_list
+
+    NUMBER          shift and go to state 61
+
+    num_list                       shift and go to state 87
+
+state 78
+
+    (19) param -> DEPENDENTES LPAREN string_list RPAREN .
+
+    IMAGEM          reduce using rule 19 (param -> DEPENDENTES LPAREN string_list RPAREN .)
+    CONSTRUIR       reduce using rule 19 (param -> DEPENDENTES LPAREN string_list RPAREN .)
+    ARGUMENTOS      reduce using rule 19 (param -> DEPENDENTES LPAREN string_list RPAREN .)
+    NOME_CONTAINER  reduce using rule 19 (param -> DEPENDENTES LPAREN string_list RPAREN .)
+    REINICIAR       reduce using rule 19 (param -> DEPENDENTES LPAREN string_list RPAREN .)
+    COMANDO         reduce using rule 19 (param -> DEPENDENTES LPAREN string_list RPAREN .)
+    PONTO_ENTRADA   reduce using rule 19 (param -> DEPENDENTES LPAREN string_list RPAREN .)
+    ENV             reduce using rule 19 (param -> DEPENDENTES LPAREN string_list RPAREN .)
+    ARQUIVO_ENV     reduce using rule 19 (param -> DEPENDENTES LPAREN string_list RPAREN .)
+    PORTAS          reduce using rule 19 (param -> DEPENDENTES LPAREN string_list RPAREN .)
+    EXPOR           reduce using rule 19 (param -> DEPENDENTES LPAREN string_list RPAREN .)
+    VOLUME          reduce using rule 19 (param -> DEPENDENTES LPAREN string_list RPAREN .)
+    DEPENDENTES     reduce using rule 19 (param -> DEPENDENTES LPAREN string_list RPAREN .)
+    REDES           reduce using rule 19 (param -> DEPENDENTES LPAREN string_list RPAREN .)
+    ROTULOS         reduce using rule 19 (param -> DEPENDENTES LPAREN string_list RPAREN .)
+    DIR_TRABALHO    reduce using rule 19 (param -> DEPENDENTES LPAREN string_list RPAREN .)
+    USUARIO         reduce using rule 19 (param -> DEPENDENTES LPAREN string_list RPAREN .)
+    HOSTS_EXTRAS    reduce using rule 19 (param -> DEPENDENTES LPAREN string_list RPAREN .)
+    LIMITES         reduce using rule 19 (param -> DEPENDENTES LPAREN string_list RPAREN .)
+    RBRACE          reduce using rule 19 (param -> DEPENDENTES LPAREN string_list RPAREN .)
+
+
+state 79
+
+    (20) param -> REDES LPAREN string_list RPAREN .
+
+    IMAGEM          reduce using rule 20 (param -> REDES LPAREN string_list RPAREN .)
+    CONSTRUIR       reduce using rule 20 (param -> REDES LPAREN string_list RPAREN .)
+    ARGUMENTOS      reduce using rule 20 (param -> REDES LPAREN string_list RPAREN .)
+    NOME_CONTAINER  reduce using rule 20 (param -> REDES LPAREN string_list RPAREN .)
+    REINICIAR       reduce using rule 20 (param -> REDES LPAREN string_list RPAREN .)
+    COMANDO         reduce using rule 20 (param -> REDES LPAREN string_list RPAREN .)
+    PONTO_ENTRADA   reduce using rule 20 (param -> REDES LPAREN string_list RPAREN .)
+    ENV             reduce using rule 20 (param -> REDES LPAREN string_list RPAREN .)
+    ARQUIVO_ENV     reduce using rule 20 (param -> REDES LPAREN string_list RPAREN .)
+    PORTAS          reduce using rule 20 (param -> REDES LPAREN string_list RPAREN .)
+    EXPOR           reduce using rule 20 (param -> REDES LPAREN string_list RPAREN .)
+    VOLUME          reduce using rule 20 (param -> REDES LPAREN string_list RPAREN .)
+    DEPENDENTES     reduce using rule 20 (param -> REDES LPAREN string_list RPAREN .)
+    REDES           reduce using rule 20 (param -> REDES LPAREN string_list RPAREN .)
+    ROTULOS         reduce using rule 20 (param -> REDES LPAREN string_list RPAREN .)
+    DIR_TRABALHO    reduce using rule 20 (param -> REDES LPAREN string_list RPAREN .)
+    USUARIO         reduce using rule 20 (param -> REDES LPAREN string_list RPAREN .)
+    HOSTS_EXTRAS    reduce using rule 20 (param -> REDES LPAREN string_list RPAREN .)
+    LIMITES         reduce using rule 20 (param -> REDES LPAREN string_list RPAREN .)
+    RBRACE          reduce using rule 20 (param -> REDES LPAREN string_list RPAREN .)
+
+
+state 80
+
+    (21) param -> ROTULOS LPAREN string_list RPAREN .
+
+    IMAGEM          reduce using rule 21 (param -> ROTULOS LPAREN string_list RPAREN .)
+    CONSTRUIR       reduce using rule 21 (param -> ROTULOS LPAREN string_list RPAREN .)
+    ARGUMENTOS      reduce using rule 21 (param -> ROTULOS LPAREN string_list RPAREN .)
+    NOME_CONTAINER  reduce using rule 21 (param -> ROTULOS LPAREN string_list RPAREN .)
+    REINICIAR       reduce using rule 21 (param -> ROTULOS LPAREN string_list RPAREN .)
+    COMANDO         reduce using rule 21 (param -> ROTULOS LPAREN string_list RPAREN .)
+    PONTO_ENTRADA   reduce using rule 21 (param -> ROTULOS LPAREN string_list RPAREN .)
+    ENV             reduce using rule 21 (param -> ROTULOS LPAREN string_list RPAREN .)
+    ARQUIVO_ENV     reduce using rule 21 (param -> ROTULOS LPAREN string_list RPAREN .)
+    PORTAS          reduce using rule 21 (param -> ROTULOS LPAREN string_list RPAREN .)
+    EXPOR           reduce using rule 21 (param -> ROTULOS LPAREN string_list RPAREN .)
+    VOLUME          reduce using rule 21 (param -> ROTULOS LPAREN string_list RPAREN .)
+    DEPENDENTES     reduce using rule 21 (param -> ROTULOS LPAREN string_list RPAREN .)
+    REDES           reduce using rule 21 (param -> ROTULOS LPAREN string_list RPAREN .)
+    ROTULOS         reduce using rule 21 (param -> ROTULOS LPAREN string_list RPAREN .)
+    DIR_TRABALHO    reduce using rule 21 (param -> ROTULOS LPAREN string_list RPAREN .)
+    USUARIO         reduce using rule 21 (param -> ROTULOS LPAREN string_list RPAREN .)
+    HOSTS_EXTRAS    reduce using rule 21 (param -> ROTULOS LPAREN string_list RPAREN .)
+    LIMITES         reduce using rule 21 (param -> ROTULOS LPAREN string_list RPAREN .)
+    RBRACE          reduce using rule 21 (param -> ROTULOS LPAREN string_list RPAREN .)
+
+
+state 81
+
+    (24) param -> HOSTS_EXTRAS LPAREN string_list RPAREN .
+
+    IMAGEM          reduce using rule 24 (param -> HOSTS_EXTRAS LPAREN string_list RPAREN .)
+    CONSTRUIR       reduce using rule 24 (param -> HOSTS_EXTRAS LPAREN string_list RPAREN .)
+    ARGUMENTOS      reduce using rule 24 (param -> HOSTS_EXTRAS LPAREN string_list RPAREN .)
+    NOME_CONTAINER  reduce using rule 24 (param -> HOSTS_EXTRAS LPAREN string_list RPAREN .)
+    REINICIAR       reduce using rule 24 (param -> HOSTS_EXTRAS LPAREN string_list RPAREN .)
+    COMANDO         reduce using rule 24 (param -> HOSTS_EXTRAS LPAREN string_list RPAREN .)
+    PONTO_ENTRADA   reduce using rule 24 (param -> HOSTS_EXTRAS LPAREN string_list RPAREN .)
+    ENV             reduce using rule 24 (param -> HOSTS_EXTRAS LPAREN string_list RPAREN .)
+    ARQUIVO_ENV     reduce using rule 24 (param -> HOSTS_EXTRAS LPAREN string_list RPAREN .)
+    PORTAS          reduce using rule 24 (param -> HOSTS_EXTRAS LPAREN string_list RPAREN .)
+    EXPOR           reduce using rule 24 (param -> HOSTS_EXTRAS LPAREN string_list RPAREN .)
+    VOLUME          reduce using rule 24 (param -> HOSTS_EXTRAS LPAREN string_list RPAREN .)
+    DEPENDENTES     reduce using rule 24 (param -> HOSTS_EXTRAS LPAREN string_list RPAREN .)
+    REDES           reduce using rule 24 (param -> HOSTS_EXTRAS LPAREN string_list RPAREN .)
+    ROTULOS         reduce using rule 24 (param -> HOSTS_EXTRAS LPAREN string_list RPAREN .)
+    DIR_TRABALHO    reduce using rule 24 (param -> HOSTS_EXTRAS LPAREN string_list RPAREN .)
+    USUARIO         reduce using rule 24 (param -> HOSTS_EXTRAS LPAREN string_list RPAREN .)
+    HOSTS_EXTRAS    reduce using rule 24 (param -> HOSTS_EXTRAS LPAREN string_list RPAREN .)
+    LIMITES         reduce using rule 24 (param -> HOSTS_EXTRAS LPAREN string_list RPAREN .)
+    RBRACE          reduce using rule 24 (param -> HOSTS_EXTRAS LPAREN string_list RPAREN .)
+
+
+state 82
+
+    (25) param -> LIMITES LPAREN ulimit_list RPAREN .
+
+    IMAGEM          reduce using rule 25 (param -> LIMITES LPAREN ulimit_list RPAREN .)
+    CONSTRUIR       reduce using rule 25 (param -> LIMITES LPAREN ulimit_list RPAREN .)
+    ARGUMENTOS      reduce using rule 25 (param -> LIMITES LPAREN ulimit_list RPAREN .)
+    NOME_CONTAINER  reduce using rule 25 (param -> LIMITES LPAREN ulimit_list RPAREN .)
+    REINICIAR       reduce using rule 25 (param -> LIMITES LPAREN ulimit_list RPAREN .)
+    COMANDO         reduce using rule 25 (param -> LIMITES LPAREN ulimit_list RPAREN .)
+    PONTO_ENTRADA   reduce using rule 25 (param -> LIMITES LPAREN ulimit_list RPAREN .)
+    ENV             reduce using rule 25 (param -> LIMITES LPAREN ulimit_list RPAREN .)
+    ARQUIVO_ENV     reduce using rule 25 (param -> LIMITES LPAREN ulimit_list RPAREN .)
+    PORTAS          reduce using rule 25 (param -> LIMITES LPAREN ulimit_list RPAREN .)
+    EXPOR           reduce using rule 25 (param -> LIMITES LPAREN ulimit_list RPAREN .)
+    VOLUME          reduce using rule 25 (param -> LIMITES LPAREN ulimit_list RPAREN .)
+    DEPENDENTES     reduce using rule 25 (param -> LIMITES LPAREN ulimit_list RPAREN .)
+    REDES           reduce using rule 25 (param -> LIMITES LPAREN ulimit_list RPAREN .)
+    ROTULOS         reduce using rule 25 (param -> LIMITES LPAREN ulimit_list RPAREN .)
+    DIR_TRABALHO    reduce using rule 25 (param -> LIMITES LPAREN ulimit_list RPAREN .)
+    USUARIO         reduce using rule 25 (param -> LIMITES LPAREN ulimit_list RPAREN .)
+    HOSTS_EXTRAS    reduce using rule 25 (param -> LIMITES LPAREN ulimit_list RPAREN .)
+    LIMITES         reduce using rule 25 (param -> LIMITES LPAREN ulimit_list RPAREN .)
+    RBRACE          reduce using rule 25 (param -> LIMITES LPAREN ulimit_list RPAREN .)
+
+
+state 83
+
+    (34) ulimit_list -> STRING NUMBER .
+    (35) ulimit_list -> STRING NUMBER . COMMA ulimit_list
+
+    RPAREN          reduce using rule 34 (ulimit_list -> STRING NUMBER .)
+    COMMA           shift and go to state 88
+
+
+state 84
+
+    (26) arg_list -> STRING COMMA STRING .
+    (27) arg_list -> STRING COMMA STRING . COMMA arg_list
+
+    RPAREN          reduce using rule 26 (arg_list -> STRING COMMA STRING .)
+    COMMA           shift and go to state 89
+
+
+state 85
+
+    (29) string_list -> STRING COMMA string_list .
+
+    ]               reduce using rule 29 (string_list -> STRING COMMA string_list .)
+    RPAREN          reduce using rule 29 (string_list -> STRING COMMA string_list .)
+
+
+state 86
+
+    (30) port_list -> NUMBER : NUMBER .
+    (31) port_list -> NUMBER : NUMBER . COMMA port_list
+
+    RPAREN          reduce using rule 30 (port_list -> NUMBER : NUMBER .)
+    COMMA           shift and go to state 90
+
+
+state 87
+
+    (33) num_list -> NUMBER COMMA num_list .
+
+    RPAREN          reduce using rule 33 (num_list -> NUMBER COMMA num_list .)
+
+
+state 88
+
+    (35) ulimit_list -> STRING NUMBER COMMA . ulimit_list
+    (34) ulimit_list -> . STRING NUMBER
+    (35) ulimit_list -> . STRING NUMBER COMMA ulimit_list
+
+    STRING          shift and go to state 67
+
+    ulimit_list                    shift and go to state 91
+
+state 89
+
+    (27) arg_list -> STRING COMMA STRING COMMA . arg_list
+    (26) arg_list -> . STRING COMMA STRING
+    (27) arg_list -> . STRING COMMA STRING COMMA arg_list
+
+    STRING          shift and go to state 53
+
+    arg_list                       shift and go to state 92
+
+state 90
+
+    (31) port_list -> NUMBER : NUMBER COMMA . port_list
+    (30) port_list -> . NUMBER : NUMBER
+    (31) port_list -> . NUMBER : NUMBER COMMA port_list
+
+    NUMBER          shift and go to state 59
+
+    port_list                      shift and go to state 93
+
+state 91
+
+    (35) ulimit_list -> STRING NUMBER COMMA ulimit_list .
+
+    RPAREN          reduce using rule 35 (ulimit_list -> STRING NUMBER COMMA ulimit_list .)
+
+
+state 92
+
+    (27) arg_list -> STRING COMMA STRING COMMA arg_list .
+
+    RPAREN          reduce using rule 27 (arg_list -> STRING COMMA STRING COMMA arg_list .)
+
+
+state 93
+
+    (31) port_list -> NUMBER : NUMBER COMMA port_list .
+
+    RPAREN          reduce using rule 31 (port_list -> NUMBER : NUMBER COMMA port_list .)
+

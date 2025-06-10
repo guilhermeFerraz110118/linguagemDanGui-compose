@@ -1,0 +1,51 @@
+(* Gramática da DSL em Português – arquivo GRAMATICA_PT.ebnf *)
+
+project         ::= { servico }
+
+servico         ::= "serviço" STRING "{" { param } "}"
+
+param           ::= imagem_param
+                  | construir_param
+                  | argumentos_param
+                  | nome_container_param
+                  | reiniciar_param
+                  | comando_param
+                  | ponto_entrada_param
+                  | env_param
+                  | arquivo_env_param
+                  | portas_param
+                  | expor_param
+                  | volume_param
+                  | dependentes_param
+                  | redes_param
+                  | rotulos_param
+                  | dir_trabalho_param
+                  | usuario_param
+                  | hosts_extras_param
+                  | limites_param
+
+imagem_param        ::= "imagem" STRING
+construir_param     ::= "construir" STRING
+argumentos_param    ::= "argumentos" "(" arg_list ")"
+nome_container_param::= "nome_container" STRING
+reiniciar_param     ::= "reiniciar" STRING
+comando_param       ::= "comando" "[" string_list "]"
+ponto_entrada_param ::= "ponto_entrada" "[" string_list "]"
+env_param           ::= "env" "(" string_list ")"
+arquivo_env_param   ::= "arquivo_env" STRING
+portas_param        ::= "portas" "(" port_list ")"
+expor_param         ::= "expor" "(" num_list ")"
+volume_param        ::= "volume" STRING
+dependentes_param   ::= "dependentes" "(" string_list ")"
+redes_param         ::= "redes" "(" string_list ")"
+rotulos_param       ::= "rotulos" "(" string_list ")"
+dir_trabalho_param  ::= "dir_trabalho" STRING
+usuario_param       ::= "usuario" STRING
+hosts_extras_param  ::= "hosts_extras" "(" string_list ")"
+limites_param       ::= "limites" "(" ulimit_list ")"
+
+arg_list            ::= STRING "," STRING { "," STRING "," STRING }
+string_list         ::= STRING { "," STRING }
+port_list           ::= NUMBER ":" NUMBER { "," NUMBER ":" NUMBER }
+num_list            ::= NUMBER { "," NUMBER }
+ulimit_list         ::= STRING NUMBER { "," STRING NUMBER }

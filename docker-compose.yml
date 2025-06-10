@@ -1,0 +1,149 @@
+# 🚀 Docker Compose gerado pelo Dangui DSL
+# 🔧 Boas práticas:
+#   • Docker Engine ≥ 20.10.0
+#   • Docker Compose ≥ 1.29.0
+#   • Consulte https://docs.docker.com/compose/ para mais detalhes
+
+version: '3.8'
+services:
+  proxy:
+    image: traefhjhjik:v2.9
+    restart: always
+    command:
+    - --api.insecure=true
+    - --providers.docker
+    entrypoint:
+    - --api.insecure=true
+    - --providers.docker
+    ports:
+    - 80:80
+    - 443:443
+    networks:
+    - '00000'
+    - backend
+    labels:
+      traefik.enable: 'true'
+  frontend:
+    build: .frontend
+    restart: on-failure
+    ports:
+    - 3000:3000
+    environment:
+      API_URL: http://proxy/api
+    networks:
+    - frontend
+  api1:
+    build: ./api
+    environment:
+      FLASK_ENV: production
+      DEBUG: 'False'
+    env_file:
+    - .env.api
+    command:
+    - flask
+    - run
+    - --host=0.0.0.0
+    ports:
+    - 5000:5000
+    depends_on:
+    - db
+    networks:
+    - backend
+  api:
+    build: .api
+    environment:
+      FLASK_ENV: production
+      DEBUG: 'False'
+    env_file:
+    - .env.api
+    command:
+    - flask
+    - run
+    - --host=0.0.0.0
+    ports:
+    - 5000:5000
+    depends_on:
+    - db
+    networks:
+    - backend
+  worker:
+    image: python:3.10
+    command:
+    - celery
+    - -A
+    - tasks
+    - worker
+    - --loglevel=info
+    environment:
+      BROKER_URL: redis://cache:6379/0
+    depends_on:
+    - cache
+    networks:
+    - backend
+  db:
+    image: mysql:5.7
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: appdb
+      MYSQL_USER: app
+      MYSQL_PASSWORD: secret
+    volumes:
+    - db_vol0:/var/lib/mysql
+    networks:
+    - backend
+  cache:
+    image: redis:6-alpine
+    restart: always
+    networks:
+    - backend
+  db_admin:
+    image: phpmyadmin:5
+    restart: always
+    ports:
+    - 8080:80
+    environment:
+      PMA_HOST: db
+    extra_hosts:
+    - db:db.local
+    networks:
+    - backend
+  prometheus:
+    image: prom/prometheus:v2.33.1
+    restart: always
+    volumes:
+    - prometheus_vol0:/etc/prometheus
+    networks:
+    - monitoring
+  alertmanager:
+    image: prom/alertmanager:v0.23.0
+    restart: always
+    ports:
+    - 9093:9093
+    networks:
+    - monitoring
+  grafana:
+    image: grafana/grafana:8.5.2
+    restart: always
+    ports:
+    - 3001:3000
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    networks:
+    - monitoring
+  test_net:
+    image: alpine
+    command:
+    - sleep
+    - infinity
+    networks:
+    - isolated
+volumes:
+  db_vol0: null
+  prometheus_vol0: null
+networks:
+  '00000': null
+  backend: null
+  frontend: null
+  isolated: null
+  monitoring: null
